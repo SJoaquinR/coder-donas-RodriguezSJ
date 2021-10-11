@@ -1,6 +1,7 @@
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import CartWidget from "../CartWidget/CartWidget";
 import "./NavBar.css";
-import { ImCart } from "react-icons/im";
+
 
 const NavBar = () => {
   return (
@@ -23,7 +24,7 @@ const NavBar = () => {
           </Nav>
           <Nav>
             <Nav.Link href="#cart">
-            <ImCart />
+            <CartWidget />
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
