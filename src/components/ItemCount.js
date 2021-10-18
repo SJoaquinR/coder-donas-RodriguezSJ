@@ -4,21 +4,27 @@ function ItemCount({ stock }) {
     const [count, setCount] = useState(0);
 
     const onAdd = () => {
+        console.log("Añadir al Carrito");
+      };
+
+    const setProduct = () => {
         setCount(count + 1);
       };
 
-      const onRemove = () => {
+      const removeProduct = () => {
         setCount(count - 1)
     }
 
     return (
         <div>
             <h2>Stock Disponible {stock - count} / {stock}</h2>
-            <h3>Cantidad de Productos en el carrito: <span>{count}</span></h3>
+            
             <section className="controls">
-            <button className="btn btn-success" onClick={onAdd} value={1} disabled={count >= stock}>Añadir al Carrito</button>
-            <button className="btn btn-secondary" onClick={onRemove} value={-1} disabled={count <= 0}>Retirar del Carrito</button>
+            <button className="btn btn-secondary" onClick={removeProduct} value={-1} disabled={count <= 0}>-</button>
+            <span><strong> Cantidad: {count} </strong></span>
+            <button className="btn btn-success" onClick={setProduct} value={1} disabled={count >= stock}>+</button>
             </section>
+            <button onClick={onAdd} className="btn btn-primary">Añadir al Carrito</button>
         </div>
     )
 }
