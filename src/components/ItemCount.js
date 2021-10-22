@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import { Button } from "react-bootstrap";
 
 function ItemCount({ stock }) {
     const [count, setCount] = useState(0);
@@ -20,11 +21,11 @@ function ItemCount({ stock }) {
             <h2>Stock Disponible {stock - count} / {stock}</h2>
             
             <section className="controls">
-            <button className="btn btn-secondary" onClick={removeProduct} value={-1} disabled={count <= 0}>-</button>
+            <Button variant="secondary" onClick={removeProduct} value={-1} disabled={count <= 0}>-</Button>
             <span><strong> Cantidad: {count} </strong></span>
-            <button className="btn btn-success" onClick={setProduct} value={1} disabled={count >= stock}>+</button>
+            <Button variant="success" onClick={setProduct} value={1} disabled={count >= stock}>+</Button>
             </section>
-            <button onClick={onAdd} className="btn btn-primary">Añadir al Carrito</button>
+            <Button onClick={onAdd} variant="primary">Añadir al Carrito</Button>
         </div>
     )
 }
