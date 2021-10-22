@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Button , Spinner } from "react-bootstrap";
 import { promises } from "../../helpers/promises";
 import Item from "../item/Item";
 import "./ItemList.css";
@@ -31,11 +32,20 @@ const ItemList = ({ products }) => {
       <h3 className={isSuccess ? "successMessage" : "errorMessages"}>
         {message}
       </h3>
-      {isLoading && <h3>Cargando catalogo...</h3>}
-      {isFinished && currentProducts.map((item) => (
-        <Item key={item.id} {...item} />
-      ))}
-      
+      {isLoading && (
+        <Button variant="primary" disabled>
+          <Spinner
+            as="span"
+            animation="border"
+            size="sm"
+            role="status"
+            aria-hidden="true"
+          />{" "}
+          Loading...
+        </Button>
+      )}
+      {isFinished &&
+        currentProducts.map((item) => <Item key={item.id} {...item} />)}
     </div>
   );
 };
