@@ -1,12 +1,12 @@
 import { Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 //import ItemDetailContainer from "../../layouts/item-detail-container/ItemDetailContainer";
 import "./Item.css";
 
 const Item = ({ id, producto, price, pictureUrl, stock }) => {
   const handleShowItemClick = () => {
     console.log(`Detalles del Producto ${id} seleccionado`);
-    //<ItemDetailContainer />
-    
+    <Link to={`../item/${id}`} />   
   };
 
   return (

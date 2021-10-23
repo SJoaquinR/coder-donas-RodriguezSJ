@@ -1,21 +1,24 @@
 import React from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router";
 import ItemDetail from "../../components/item-detail/ItemDetail";
+import { useState } from "react";
+import { products } from "../../data/products";
 
 const ItemDetailContainer = () => {
-  //Aca nos llega la info de tipo objeto por medio de una promesa
-  const item = {
-    id: "3",
-    producto: "Limon & Amapolas",
-    price: 100,
-    pictureUrl:
-      "https://www.dulcedona.com/wp-content/uploads/2020/10/vainillaspnew-300x300.jpg.webp",
-    stock: 1,
-  };
+  const { itemId } = useParams();
+  const [item, setItem] = useState({})
+
+  useEffect(() => {
+		const findItem = products.filter(item => item.id === itemId)
+		setItem(...findItem)
+	}, [itemId])
+
 
   return (
     <div>
-      <h2>ItemDetailContainer</h2>
-      <ItemDetail {...item} />
+      <h1>Producto seleccionado</h1>
+        <ItemDetail {...item} />
     </div>
   );
 };
