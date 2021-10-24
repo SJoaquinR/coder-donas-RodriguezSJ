@@ -4,10 +4,9 @@ import { Link } from "react-router-dom";
 import "./Item.css";
 
 const Item = ({ id, producto, price, pictureUrl, stock }) => {
-  const handleShowItemClick = () => {
-    console.log(`Detalles del Producto ${id} seleccionado`);
-    <Link to={`../item/${id}`} />   
-  };
+  // const handleShowItemClick = () => {
+  //   console.log(`Detalles del Producto ${id} seleccionado`);
+  // };
 
   return (
     <Card className="Card-style">
@@ -30,9 +29,10 @@ const Item = ({ id, producto, price, pictureUrl, stock }) => {
         <Card.Text>
           <strong>Stock disponible: </strong> {stock}
         </Card.Text>
-        <Button variant="primary" onClick={handleShowItemClick}>
-          Ver detalle del producto
-        </Button>
+        <Link to={`../item/${id}`}>
+          {/* <Button variant="primary" onClick={handleShowItemClick}> */}
+          <Button variant="primary">Ver detalle del producto</Button>
+        </Link>
       </Card.Body>
     </Card>
   );

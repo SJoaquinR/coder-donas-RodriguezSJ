@@ -44,8 +44,11 @@ const ItemList = ({ products }) => {
           Loading...
         </Button>
       )}
-      {isFinished &&
-        currentProducts.map((item) => <Item key={item.id} {...item} />)}
+      {isFinished &&  
+         currentProducts.map((item) => (
+          <Item key={item.category} {...item.category}/>
+          ))  
+      }
     </div>
   );
 };

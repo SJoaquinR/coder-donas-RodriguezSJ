@@ -1,4 +1,5 @@
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import CartWidget from "../cart-widget/CartWidget";
 import "./NavBar.css";
 
@@ -7,7 +8,9 @@ const NavBar = () => {
   return (
     <Navbar bg="light" expand="lg" className="navbar sticky-top navbar">
       <Container>
-        <Navbar.Brand href="#home">DONAS</Navbar.Brand>
+      <NavLink to={`/`} >
+        <Navbar.Brand to="#home">DONAS</Navbar.Brand>
+        </NavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
