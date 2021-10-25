@@ -7,25 +7,25 @@ const NavBar = () => {
   return (
     <Navbar bg="light" expand="lg" className="navbar sticky-top navbar">
       <Container>
-        <NavLink to={`/`}>
-          <Navbar.Brand>DONAS</Navbar.Brand>
-        </NavLink>
+        <Navbar.Brand>
+          <Link to="/">DONAS</Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#us">Nosotros</Nav.Link>
-            <NavDropdown title="Productos" id="basic-nav-dropdown">
-              <Link to={`/category/glazed`}>
-                <NavDropdown.Item href="#action/3.1">
-                  Glaciados
-                </NavDropdown.Item>
-              </Link>
+            {/* <Nav.Link href="#us">Nosotros</Nav.Link> */}
+            <NavDropdown title="Categorías" id="basic-nav-dropdown">
+              <NavDropdown.Item>
+                <NavLink to="/category/glazed" activeClassName="selected">Glaciados</NavLink>
+              </NavDropdown.Item>
+
               <NavDropdown.Divider />
-              <Link to={`/category/fillers`}>
-                <NavDropdown.Item href="#action/3.2">Rellenos</NavDropdown.Item>
-              </Link>
+
+              <NavDropdown.Item>
+                <NavLink to="/category/fillers" activeClassName="selected">Rellenos</NavLink>
+              </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="#contact">Contacto</Nav.Link>
+            {/* <Nav.Link href="#contact">Contacto</Nav.Link> */}
           </Nav>
           <Nav>
             <Nav.Link href="#cart">
