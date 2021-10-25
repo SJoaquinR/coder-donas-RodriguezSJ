@@ -1,11 +1,8 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const ItemDetail = ({ id, producto, price, pictureUrl, stock }) => {
-  const handleBackItemClick = () => {
-    console.log(`Presiono el boton volver`);
-  };
-
   return (
     <div>
       <Card className="Card-style">
@@ -28,9 +25,9 @@ const ItemDetail = ({ id, producto, price, pictureUrl, stock }) => {
           <Card.Text>
             <strong>Stock disponible: </strong> {stock}
           </Card.Text>
-          <Button variant="primary" onClick={handleBackItemClick}>
-            Volver
-          </Button>
+          <Link to={`/`}>
+            <Button variant="primary">Volver</Button>
+          </Link>
         </Card.Body>
       </Card>
     </div>

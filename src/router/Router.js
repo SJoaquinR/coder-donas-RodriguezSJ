@@ -2,8 +2,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import ItemListContainer from "../layouts/item-list-container/ItemListContainer";
 import NavBar from "../components/nav-bar/NavBar";
 import ItemDetailContainer from "../layouts/item-detail-container/ItemDetailContainer";
-// import ItemDetailContainer from "./layouts/item-detail-container/ItemDetailContainer";
-// import NotFound from "./layouts/not-found/NotFound";
+import NotFound from "../layouts/not-found/NotFound";
 
 const RouterApp = () => {
   return (
@@ -14,10 +13,11 @@ const RouterApp = () => {
             <ItemListContainer greeting="Bienvenido al local de Donas!"/>
             {/* <img src="logo512.png" alt="Imagen de donas" /> */}
         </Route>
-         <Route exact path="/item/:itemId" component={ItemDetailContainer} />
-        {/* <Route path="*">
-          <NotFound />
-        </Route> */}
+        <Route exact path="/category/:categoryValue">
+            <ItemListContainer greeting="Bienvenido al local de Donas!"/>
+        </Route>
+        <Route exact path="/item/:itemId" component={ItemDetailContainer} />
+        <Route path="*" component={NotFound} />
       </Switch>
     </BrowserRouter>
   );

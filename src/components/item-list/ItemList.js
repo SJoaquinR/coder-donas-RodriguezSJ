@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button , Spinner } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { promises } from "../../helpers/promises";
 import Item from "../item/Item";
 import "./ItemList.css";
@@ -10,6 +10,7 @@ const ItemList = ({ products }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isFinished, setIsFinished] = useState(false);
   const [currentProducts, setCurrentProducts] = useState([]);
+
 
   //Efecto de montaje
   useEffect(() => {
@@ -26,6 +27,7 @@ const ItemList = ({ products }) => {
     }
   }, [products]);
 
+  
   return (
     <div>
       <h1>Catalogo de Productos</h1>
@@ -45,7 +47,7 @@ const ItemList = ({ products }) => {
         </Button>
       )}
       {isFinished &&
-        currentProducts.map((item) => <Item key={item.id} {...item} />)}
+          currentProducts.map((item) => <Item key={item.id} {...item} />) }
     </div>
   );
 };
