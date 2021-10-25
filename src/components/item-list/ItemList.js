@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button , Spinner } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { promises } from "../../helpers/promises";
 import Item from "../item/Item";
 import "./ItemList.css";
@@ -44,11 +44,8 @@ const ItemList = ({ products }) => {
           Loading...
         </Button>
       )}
-      {isFinished &&  
-         currentProducts.map((item) => (
-          <Item key={item.category} {...item.category}/>
-          ))  
-      }
+      {isFinished &&
+        currentProducts.map((item) => <Item key={item.id} {...item} />)}
     </div>
   );
 };
