@@ -11,6 +11,7 @@ const ItemList = ({ products }) => {
   const [isFinished, setIsFinished] = useState(false);
   const [currentProducts, setCurrentProducts] = useState([]);
 
+
   //Efecto de montaje
   useEffect(() => {
     if (products) {
@@ -26,6 +27,7 @@ const ItemList = ({ products }) => {
     }
   }, [products]);
 
+  
   return (
     <div>
       <h1>Catalogo de Productos</h1>
@@ -45,7 +47,7 @@ const ItemList = ({ products }) => {
         </Button>
       )}
       {isFinished &&
-        currentProducts.map((item) => <Item key={item.id} {...item} />)}
+          currentProducts.map((item) => <Item key={item.id} {...item} />) }
     </div>
   );
 };

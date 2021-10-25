@@ -1,17 +1,25 @@
 import { products } from "../../data/products";
 import ItemList from "../../components/item-list/ItemList";
 import ItemCount from "../../components/ItemCount";
-// import { useParams } from "react-router";
+ import { useParams } from "react-router";
+import { useEffect, useState } from "react";
 
 const ItemListContainer = ({children, greeting}) => {
-  // const { itemId } = useParams();
+   const { categoryValue } = useParams();
+   const [itemsProducts, setitemsProducts] = useState(products);
+
+  useEffect(() => {
+if (categoryValue !== undefined) {
+  const findItem = itemsProducts.filter(categorySub => categorySub.category === categoryValue)
+		setitemsProducts(findItem)
+}}, [categoryValue])
 
   return (
     <div>
       <h1>{greeting}</h1>
       {children}
       <ItemCount stock="5" />
-      <ItemList products={products} />
+      <ItemList products={itemsProducts}  />
     </div>
   );
 };
