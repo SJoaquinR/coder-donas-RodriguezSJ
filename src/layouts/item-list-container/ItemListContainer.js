@@ -10,12 +10,14 @@ const ItemListContainer = ({ children, greeting }) => {
 
   useEffect(() => {
     if (categoryValue !== undefined) {
-      const findItem = itemsProducts.filter(
+      const findItem = products.filter(
         (categorySub) => categorySub.category === categoryValue
       );
       setitemsProducts(findItem);
+    }else{
+      setitemsProducts(products);
     }
-  }, [categoryValue, itemsProducts]);
+  }, [categoryValue]);
 
   return (
     <div>

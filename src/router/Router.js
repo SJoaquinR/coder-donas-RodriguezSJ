@@ -13,6 +13,10 @@ const RouterApp = () => {
             <ItemListContainer greeting="Bienvenido al local de Donas!"/>
             {/* <img src="logo512.png" alt="Imagen de donas" /> */}
         </Route>
+        <Route exact path="/Home">
+            <ItemListContainer greeting="Bienvenido al local de Donas!"/>
+            {/* <img src="logo512.png" alt="Imagen de donas" /> */}
+        </Route>
         <Route exact path="/category/:categoryValue">
             <ItemListContainer greeting="Bienvenido al local de Donas!"/>
         </Route>
