@@ -1,6 +1,5 @@
 import { products } from "../../data/products";
 import ItemList from "../../components/item-list/ItemList";
-import ItemCount from "../../components/ItemCount";
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 
@@ -20,12 +19,11 @@ const ItemListContainer = ({ children, greeting }) => {
   }, [categoryValue]);
 
   return (
-    <div>
+    <>
       <h1>{greeting}</h1>
       {children}
-      <ItemCount stock="5" />
       <ItemList products={itemsProducts} />
-    </div>
+    </>
   );
 };
 

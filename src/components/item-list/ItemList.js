@@ -29,7 +29,7 @@ const ItemList = ({ products }) => {
 
   
   return (
-    <div>
+    <>
       <h1>Catalogo de Productos</h1>
       <h3 className={isSuccess ? "successMessage" : "errorMessages"}>
         {message}
@@ -48,7 +48,7 @@ const ItemList = ({ products }) => {
       )}
       {isFinished &&
           currentProducts.map((item) => <Item key={item.id} {...item} />) }
-    </div>
+    </>
   );
 };
 
