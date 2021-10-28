@@ -16,6 +16,8 @@ const ItemDetailContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isFinished, setIsFinished] = useState(false);
 
+  const [quantity, setQuantity] = useState(0);
+
   useEffect(() => {
     mook(
       products,
@@ -32,7 +34,7 @@ const ItemDetailContainer = () => {
 
 
   return (
-    <div>
+    <>
       <h1>Producto seleccionado</h1>
       
       <h3 className={isSuccess ? "successMessage" : "errorMessages"}>
@@ -51,8 +53,8 @@ const ItemDetailContainer = () => {
         </Button>
       )}
       {isFinished && 
-        <ItemDetail {...item} /> }
-    </div>
+        <ItemDetail {...item} quantity={quantity} setQuantity={setQuantity} /> }
+    </>
   );
 };
 
