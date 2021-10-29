@@ -1,4 +1,5 @@
 import "./App.css";
+import {CartContext} from "./components/context/CartContext";
 // import { products } from "./data/products";
 // import ItemCount from "./components/ItemCount";
 // import ItemList from "./components/item-list/ItemList";
@@ -10,14 +11,11 @@ import RouterApp from "./router/Router";
 function App() {
   return (
     <div className="App">
-      <RouterApp />
-      {/* <NavBar />
-      <ItemListContainer greeting="Bienvenido al local de Donas!">
-        <img src="logo512.png" alt="Imagen de donas" />
-        <ItemCount stock="5" />
-        <ItemList products={products} />
-      </ItemListContainer>
-      <ItemDetailContainer products={products} /> */}
+      <CartContext.Provider value={[]}>
+        {/* <CartProvider> */}
+        <RouterApp />
+        {/* </CartProvider> */}
+      </CartContext.Provider>
     </div>
   );
 }

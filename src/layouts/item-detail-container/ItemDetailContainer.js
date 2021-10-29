@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router";
-import ItemDetail from "../../components/item-detail/ItemDetail";
-import { useState } from "react";
-import { products } from "../../data/products";
 import { Button, Spinner } from "react-bootstrap";
+import { products } from "../../data/products";
 import { mook } from "../../helpers/mook";
+import {CartContext} from "../../components/context/CartContext";
+import ItemDetail from "../../components/item-detail/ItemDetail";
 
 const ItemDetailContainer = () => {
+  const isTrue = useContext(CartContext);
+
   const { itemId } = useParams();
   const [item, setItem] = useState({})
 
@@ -15,28 +17,37 @@ const ItemDetailContainer = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isFinished, setIsFinished] = useState(false);
+  
+  const [messageContext, setMessageContext] = useState("");
 
   const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
-    mook(
-      products,
-      itemId,
-      setMessage,
-      setIsSuccess,
-      setIsLoading,
-      setIsFinished,
-      setItem
-    );
-    // const findItem = products.filter(item => item.id === itemId)
-		// setItem(...findItem)
+    if (isTrue) {
+      setMessageContext(`Context recibido: ${isTrue}`)
+    }
+  },[isTrue]);
+
+  useEffect(() => {
+    if (itemId) {
+      mook(
+        products,
+        itemId,
+        setMessage,
+        setIsSuccess,
+        setIsLoading,
+        setIsFinished,
+        setItem
+      );
+    }
 	}, [itemId])
 
 
   return (
     <>
       <h1>Producto seleccionado</h1>
-      
+      <h2> {messageContext && <p>{messageContext}</p>} </h2>
+
       <h3 className={isSuccess ? "successMessage" : "errorMessages"}>
         {message}
       </h3>

@@ -10,8 +10,8 @@ export const mook  = (
     const productsResponse = new Promise((resolve, reject) => {
       // Synchronous code
       setTimeout(() => {
-          const findItem = products.filter(item => item.id === itemId)
-        resolve(...findItem);
+          const findItem = products.find(item => item.id === itemId)
+        resolve(findItem);
       }, 2000);
       // reject("This petition is rejected");
     });

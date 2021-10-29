@@ -1,7 +1,7 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import { products } from "../../data/products";
 import ItemList from "../../components/item-list/ItemList";
-import { useParams } from "react-router";
-import { useEffect, useState } from "react";
 
 const ItemListContainer = ({ children, greeting }) => {
   const { categoryValue } = useParams();

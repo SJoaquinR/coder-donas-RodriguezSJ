@@ -1,9 +1,9 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import ItemListContainer from "../layouts/item-list-container/ItemListContainer";
-import NavBar from "../components/nav-bar/NavBar";
 import ItemDetailContainer from "../layouts/item-detail-container/ItemDetailContainer";
 import NotFound from "../layouts/not-found/NotFound";
 import CartContainer from "../layouts/cart-container/CartContainer";
+import NavBar from "../components/nav-bar/NavBar";
 
 const RouterApp = () => {
   return (
