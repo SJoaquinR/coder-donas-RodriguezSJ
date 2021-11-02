@@ -27,7 +27,7 @@ const NavBar = () => {
           </Nav>
           <Nav>
             <Nav.Link onClick={() => history.push("/cart")}>
-              <CartWidget />
+              <CartWidget countItem={0} />
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

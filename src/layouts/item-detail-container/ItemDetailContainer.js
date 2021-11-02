@@ -1,15 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import { Button, Spinner } from "react-bootstrap";
 import { products } from "../../data/products";
 import { mook } from "../../helpers/mook";
-import {CartContext} from "../../components/context/CartContext";
 import ItemDetail from "../../components/item-detail/ItemDetail";
 
 const ItemDetailContainer = () => {
-  const isTrue = useContext(CartContext);
-
   const { itemId } = useParams();
   const [item, setItem] = useState({})
 
@@ -18,15 +15,15 @@ const ItemDetailContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isFinished, setIsFinished] = useState(false);
   
-  const [messageContext, setMessageContext] = useState("");
+  // const [messageContext, setMessageContext] = useState("");
 
   const [quantity, setQuantity] = useState(0);
 
-  useEffect(() => {
-    if (isTrue) {
-      setMessageContext(`Context recibido: ${isTrue}`)
-    }
-  },[isTrue]);
+  // useEffect(() => {
+  //   if (isTrue) {
+  //     setMessageContext(`Context recibido: ${isTrue}`)
+  //   }
+  // },[isTrue]);
 
   useEffect(() => {
     if (itemId) {
@@ -46,7 +43,7 @@ const ItemDetailContainer = () => {
   return (
     <>
       <h1>Producto seleccionado</h1>
-      <h2> {messageContext && <p>{messageContext}</p>} </h2>
+      {/* <h2> {messageContext && <p>{messageContext}</p>} </h2> */}
 
       <h3 className={isSuccess ? "successMessage" : "errorMessages"}>
         {message}
