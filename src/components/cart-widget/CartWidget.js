@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ImCart } from "react-icons/im";
+import { CartContext } from "../context/CartContext";
 
-const CartWidget = ({ countItem }) => {
+const CartWidget = () => {
+  const {getItemsCount} = useContext(CartContext)
   return (
     <>
-      <ImCart /> {countItem}
+      <ImCart /> {getItemsCount()}
     </>
   );
 };

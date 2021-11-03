@@ -25,18 +25,23 @@ export const CartProvider = ({ defaultValue = [], children }) => {
   };
 
   const removeItem = (itemId) => {
-    const currentItems = items.filter(({item}) => item.id !== itemId);
-      setItems(currentItems);
+    const currentItems = items.filter(({ item }) => item.id !== itemId);
+    setItems(currentItems);
   };
 
   const clear = () => setItems(defaultValue);
 
-  const isInCart = (itemId) => {
-    // True if item is in cart
-    // False if item is not in cart
-    const findItem = items.find((item) => item.id === itemId);
-    return findItem;
-  };
+  // True if item is in cart
+  // False if item is not in cart
+  const isInCart = (itemId) => items.some((item) => item.product.id === itemId);
+
+  const getItemsCount = () => items.length;
+
+  const calculateTotal = () =>
+    items.reduce(
+      (current, item) => current + item.item.price * item.quantity,
+      0
+    );
 
   return (
     <CartContext.Provider
@@ -46,6 +51,8 @@ export const CartProvider = ({ defaultValue = [], children }) => {
         removeItem,
         clear,
         isInCart,
+        getItemsCount,
+        calculateTotal,
       }}
     >
       {children}
