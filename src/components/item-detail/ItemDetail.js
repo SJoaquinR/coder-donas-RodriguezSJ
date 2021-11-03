@@ -29,8 +29,10 @@ const ItemDetail = ({
     setIsAdded(true);
   };
 
+  let priceTotalItem = price * quantity;
+
   const handleRemoveItem = () => {
-    removeItem( id );
+    removeItem(id);
   };
 
   return (
@@ -57,9 +59,14 @@ const ItemDetail = ({
               <strong>Stock disponible: </strong> {stock}
             </Card.Text>
           ) : (
-            <Card.Text>
-              <strong>Cantidad seleccionada: {quantity} </strong>
-            </Card.Text>
+            <>
+              <Card.Text>
+                <strong>Cantidad seleccionada: {quantity} </strong>
+              </Card.Text>
+              <Card.Text>
+                <strong>Total: ${priceTotalItem}</strong>
+              </Card.Text>
+            </>
           )}
 
           {isAdded !== true ? (
