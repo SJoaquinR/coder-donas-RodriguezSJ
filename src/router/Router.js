@@ -21,6 +21,9 @@ const RouterApp = () => {
         <Route exact path="/category/:categoryValue">
             <ItemListContainer greeting="Bienvenido al local de Donas!"/>
         </Route>
+        <Route exact path="/category/all">
+            <ItemListContainer greeting="Bienvenido al local de Donas!"/>
+        </Route>
         <Route exact path="/item/:itemId" component={ItemDetailContainer} />
         <Route path="/cart" component={CartContainer} />
         <Route path="*" component={NotFound} />
