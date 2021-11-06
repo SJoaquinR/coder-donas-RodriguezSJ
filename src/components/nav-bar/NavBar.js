@@ -16,12 +16,19 @@ const NavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <NavDropdown title="Categorías" id="basic-nav-dropdown">
-              <NavDropdown.Item onClick={() => history.push("/category/glazed")} className="selected">
+              <NavDropdown.Item
+                onClick={() => history.push("/category/glazed")}
+              >
                 Glaciados
               </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item onClick={() => history.push("/category/fillers")} className="selected">
+              <NavDropdown.Item
+                onClick={() => history.push("/category/fillers")}
+              >
                 Rellenos
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item onClick={() => history.push("/category/all")}>
+                Todos
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>

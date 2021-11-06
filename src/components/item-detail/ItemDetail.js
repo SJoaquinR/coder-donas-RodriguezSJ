@@ -6,7 +6,7 @@ import ItemCount from "../ItemCount";
 
 const ItemDetail = ({
   id,
-  producto,
+  product,
   price,
   pictureUrl,
   stock,
@@ -20,7 +20,7 @@ const ItemDetail = ({
   const handleAddItem = () => {
     const item = {
       id,
-      producto,
+      product,
       price,
       pictureUrl,
       stock,
@@ -49,7 +49,7 @@ const ItemDetail = ({
             <strong>ID:</strong> {id}
           </Card.Text>
           <Card.Text>
-            <strong>Producto:</strong> {producto}
+            <strong>Producto:</strong> {product}
           </Card.Text>
           <Card.Text>
             <strong>Precio:</strong> ${price}

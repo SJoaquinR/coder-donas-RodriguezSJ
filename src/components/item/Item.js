@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 //import ItemDetailContainer from "../../layouts/item-detail-container/ItemDetailContainer";
 import "./Item.css";
 
-const Item = ({ id, producto, price, pictureUrl, stock }) => {
+const Item = ({ id, product, price, pictureUrl, stock }) => {
   // const handleShowItemClick = () => {
   //   console.log(`Detalles del Producto ${id} seleccionado`);
   // };
@@ -21,7 +21,7 @@ const Item = ({ id, producto, price, pictureUrl, stock }) => {
           <strong>ID:</strong> {id}
         </Card.Text>
         <Card.Text>
-          <strong>Producto:</strong> {producto}
+          <strong>Producto:</strong> {product}
         </Card.Text>
         <Card.Text>
           <strong>Precio:</strong> ${price}
