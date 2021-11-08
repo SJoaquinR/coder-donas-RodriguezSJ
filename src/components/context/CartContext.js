@@ -14,6 +14,7 @@ export const CartContext = createContext([]);
 
 export const CartProvider = ({ defaultValue = [], children }) => {
   const [items, setItems] = useState(defaultValue);
+  const [cartCount, setCartCount] = useState([])
 
   const addItem = (currentItem) => {
     //.some(({ item }) -> usamos el item de mi producto -> lo desestructuramos y lo comparamos con el id del producto que estamos agregando)
@@ -35,7 +36,12 @@ export const CartProvider = ({ defaultValue = [], children }) => {
   // False if item is not in cart
   const isInCart = (itemId) => items.some((item) => item.product.id === itemId);
 
-  const getItemsCount = () => items.length;
+  const getItemsCount = () => {
+    setCartCount(items.reduce(
+      (current, item) => current + item.quantity ,
+      0))
+
+    return cartCount};
 
   const calculateTotal = () =>
     items.reduce(

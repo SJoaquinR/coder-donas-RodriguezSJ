@@ -37,83 +37,87 @@ const ItemDetail = ({
 
   return (
     <>
-      <Card className="Card-style">
-        <Card.Body>
-          <img
-            src={pictureUrl}
-            style={{ width: "200px" }}
-            className="border border-dark rounded"
-            alt=""
-          />
-          <Card.Text>
-            <strong>ID:</strong> {id}
-          </Card.Text>
-          <Card.Text>
-            <strong>Producto:</strong> {product}
-          </Card.Text>
-          <Card.Text>
-            <strong>Precio:</strong> ${price}
-          </Card.Text>
-          {location.pathname !== "/cart" ? (
-            <Card.Text>
-              <strong>Stock disponible: </strong> {stock}
-            </Card.Text>
-          ) : (
-            <>
+      <div className="col-md-4">
+        <div className="mb-4">
+          <Card className="Card-style">
+            <Card.Body>
+              <img
+                src={pictureUrl}
+                style={{ width: "200px" }}
+                className="border border-dark rounded"
+                alt=""
+              />
               <Card.Text>
-                <strong>Cantidad seleccionada: {quantity} </strong>
+                <strong>ID:</strong> {id}
               </Card.Text>
               <Card.Text>
-                <strong>Total: ${priceTotalItem}</strong>
+                <strong>Producto:</strong> {product}
               </Card.Text>
-            </>
-          )}
-
-          {isAdded !== true ? (
-            <Card.Text>
-              {location.pathname === "/cart" ? null : (
+              <Card.Text>
+                <strong>Precio:</strong> ${price}
+              </Card.Text>
+              {location.pathname !== "/cart" ? (
+                <Card.Text>
+                  <strong>Stock disponible: </strong> {stock}
+                </Card.Text>
+              ) : (
                 <>
-                  <ItemCount
-                    stock={stock}
-                    quantity={quantity}
-                    setQuantity={setQuantity}
-                  />
+                  <Card.Text>
+                    <strong>Cantidad seleccionada: {quantity} </strong>
+                  </Card.Text>
+                  <Card.Text>
+                    <strong>Total: ${priceTotalItem}</strong>
+                  </Card.Text>
+                </>
+              )}
+
+              {isAdded !== true ? (
+                <Card.Text>
+                  {location.pathname === "/cart" ? null : (
+                    <>
+                      <ItemCount
+                        stock={stock}
+                        quantity={quantity}
+                        setQuantity={setQuantity}
+                      />
+                      {quantity > 0 && (
+                        <Button variant="primary" onClick={handleAddItem}>
+                          Añadir al Carrito
+                        </Button>
+                      )}
+                    </>
+                  )}
+                </Card.Text>
+              ) : (
+                <>
                   {quantity > 0 && (
-                    <Button variant="primary" onClick={handleAddItem}>
-                      Añadir al Carrito
-                    </Button>
+                    <Card.Text>
+                      <Link to="/cart">
+                        <Button variant="secondary">Ir al Carrito</Button>
+                      </Link>
+                    </Card.Text>
                   )}
                 </>
               )}
-            </Card.Text>
-          ) : (
-            <>
-              {quantity > 0 && (
+
+              {location.pathname !== "/cart" ? null : (
                 <Card.Text>
-                  <Link to="/cart">
-                    <Button variant="success">Ir al Carrito</Button>
+                  <Button variant="primary" onClick={handleRemoveItem}>
+                    Eliminar del Carrito
+                  </Button>
+                </Card.Text>
+              )}
+              {location.pathname === "/cart" ? null : (
+                <Card.Text>
+                  <Link to={`/`}>
+                    <Button variant="success">Volver al Catalogo</Button>
                   </Link>
                 </Card.Text>
               )}
-            </>
-          )}
-
-          {location.pathname !== "/cart" ? null : (
-            <Card.Text>
-              <Button variant="primary" onClick={handleRemoveItem}>
-                Eliminar del Carrito
-              </Button>
-            </Card.Text>
-          )}
-          {location.pathname === "/cart" ? null : (
-            <Card.Text>
-              <Link to={`/`}>
-                <Button variant="primary">Volver</Button>
-              </Link>
-            </Card.Text>
-          )}
-        </Card.Body>
-      </Card>
+            </Card.Body>
+          </Card>
+        </div>
+      </div>
     </>
   );
 };

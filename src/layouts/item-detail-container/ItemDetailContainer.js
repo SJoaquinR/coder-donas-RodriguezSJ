@@ -82,7 +82,17 @@ const ItemDetailContainer = () => {
           Loading...
         </Button>
       ) : (
-        <ItemDetail {...item} quantity={quantity} setQuantity={setQuantity} />
+        <div className="album py-4 ">
+          <div className="container">
+            <div className="row justify-content-center">
+              <ItemDetail
+                {...item}
+                quantity={quantity}
+                setQuantity={setQuantity}
+              />
+            </div>
+          </div>
+        </div>
       )}
     </>
   );

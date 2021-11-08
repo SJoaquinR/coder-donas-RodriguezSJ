@@ -17,21 +17,37 @@ const CartContainer = () => {
       <h1>Carrito de compras</h1>
       {items.length > 0 ? (
         <>
+          {" "}
           <Cart items={items} />
-          <Card.Text><FinishPurchase />
-            <strong>Precio Total: ${calculateTotal()} </strong>
-          </Card.Text>
+          <strong>Precio Total: ${calculateTotal()} </strong>
           <Card.Text>
-            <Button variant="primary" onClick={handleClearItem}>
-              Vaciar Carrito
+            
+            <FinishPurchase />
+          </Card.Text>
+          <div className="d-flex justify-content-center">
+            <Button
+              variant="outline-danger"
+              onClick={handleClearItem}
+              className="mt-3"
+            >
+              Vaciar carrito
             </Button>
             <Link to={`/`}>
-              <Button variant="primary">Volver</Button>
+              <Button variant="outline-success" className="mt-3">
+                Seguir comprando
+              </Button>
             </Link>
-          </Card.Text>
+          </div>
         </>
       ) : (
-        <h3>Tu carrito esta vacio</h3>
+        <>
+          <h3 className="mt-3">No hay productos en el carrito</h3>
+          <Link to={`/`}>
+            <Button variant="outline-success" className="mt-3">
+              Ir al catalogo
+            </Button>
+          </Link>
+        </>
       )}
     </>
   );
