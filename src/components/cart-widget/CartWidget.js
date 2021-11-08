@@ -3,10 +3,11 @@ import { ImCart } from "react-icons/im";
 import { CartContext } from "../context/CartContext";
 
 const CartWidget = () => {
-  const {getItemsCount} = useContext(CartContext)
-  return (
+  const {items, getItemsCount} = useContext(CartContext)
+
+   return (
     <>
-      <ImCart /> {getItemsCount()}
+      {items.length > 0 ? <><ImCart /> {getItemsCount()}</> : <><ImCart /> 0</>}
     </>
   );
 };
