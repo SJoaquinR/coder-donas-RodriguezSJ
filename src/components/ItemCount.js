@@ -7,21 +7,21 @@ function ItemCount({ stock, quantity, setQuantity }) {
   return (
     <>
         <Button
-          variant="secondary"
+          variant={`btn ${quantity === 0 ? "btn-danger disabled" : "btn-secondary"}`}
           onClick={handleRest}
-          value={-1}
-          disabled={quantity <= 0}
+          // value={-1}
+          // disabled={quantity <= 0}
         >
           -
         </Button>
-        <span>
-          <strong> Cantidad seleccionada: {quantity} </strong>
+        <span className="mx-3">
+          <strong>{quantity}</strong>
         </span>
         <Button
-          variant="success"
+          variant={`btn ${quantity === stock ? "btn-danger disabled" : "btn-success"}`}
           onClick={handlePlus}
-          value={1}
-          disabled={quantity >= stock}
+          // value={1}
+          // disabled={quantity >= stock}
         >
           +
         </Button>

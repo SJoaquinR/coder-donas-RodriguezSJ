@@ -1,6 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Button, Card } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom";
+import NumberFormat from "react-number-format";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import ItemCount from "../ItemCount";
 
@@ -14,8 +15,13 @@ const ItemDetail = ({
   setQuantity,
 }) => {
   const location = useLocation();
-  const { addItem, removeItem } = useContext(CartContext);
-  const [isAdded, setIsAdded] = useState(false);
+  const { goBack, push } = useHistory();
+  const { addItem, removeItem, isInCart } = useContext(CartContext);
+
+  const styles = {
+    btnAddItem: isInCart(id) ? "btn btn-danger m-2" : "btn btn-success m-2",
+    btnFinishBuyer: `btn btn-success ${!isInCart(id) && "disabled"}`,
+  };
 
   const handleAddItem = () => {
     const item = {
@@ -26,7 +32,6 @@ const ItemDetail = ({
       stock,
     };
     addItem({ item, quantity });
-    setIsAdded(true);
   };
 
   let priceTotalItem = price * quantity;
@@ -66,39 +71,56 @@ const ItemDetail = ({
                     <strong>Cantidad seleccionada: {quantity} </strong>
                   </Card.Text>
                   <Card.Text>
-                    <strong>Total: ${priceTotalItem}</strong>
+                    <strong>
+                      Total:{" "}
+                      <NumberFormat
+                        displayType="text"
+                        prefix="$"
+                        thousandSeparator={true}
+                        value={priceTotalItem}
+                      />
+                    </strong>
                   </Card.Text>
                 </>
               )}
+              <>
+                {location.pathname === "/cart" ? null : (
+                  <>
+                    {isInCart(id) !== true ? (
+                      <>
+                        <Card.Text>
+                          <ItemCount
+                            stock={stock}
+                            quantity={quantity}
+                            setQuantity={setQuantity}
+                          />
+                        </Card.Text>
 
-              {isAdded !== true ? (
-                <Card.Text>
-                  {location.pathname === "/cart" ? null : (
-                    <>
-                      <ItemCount
-                        stock={stock}
-                        quantity={quantity}
-                        setQuantity={setQuantity}
-                      />
-                      {quantity > 0 && (
-                        <Button variant="primary" onClick={handleAddItem}>
-                          Añadir al Carrito
-                        </Button>
-                      )}
-                    </>
-                  )}
-                </Card.Text>
-              ) : (
-                <>
-                  {quantity > 0 && (
-                    <Card.Text>
-                      <Link to="/cart">
-                        <Button variant="secondary">Ir al Carrito</Button>
-                      </Link>
-                    </Card.Text>
-                  )}
-                </>
-              )}
+                        {quantity > 0 && (
+                          <>
+                            <Card.Text>
+                              <Button
+                                variant={styles.btnAddItem}
+                                //variant="primary m-2"
+                                onClick={handleAddItem}
+                                disabled={quantity === 0}
+                              >
+                                Añadir al Carrito
+                              </Button>
+                            </Card.Text>
+                          </>
+                        )}
+                      </>
+                    ) : (
+                      <Card.Text>
+                        <Link to="/cart">
+                          <Button variant="secondary">Ir al Carrito</Button>
+                        </Link>
+                      </Card.Text>
+                    )}
+                  </>
+                )}
+              </>
 
               {location.pathname !== "/cart" ? null : (
                 <Card.Text>
@@ -107,12 +129,25 @@ const ItemDetail = ({
                   </Button>
                 </Card.Text>
               )}
+
               {location.pathname === "/cart" ? null : (
-                <Card.Text>
-                  <Link to={`/`}>
-                    <Button variant="success">Volver al Catalogo</Button>
-                  </Link>
-                </Card.Text>
+                <>
+                  <hr />
+                  <Card.Text>
+                    <Button
+                      variant="btn btn-primary mx-2"
+                      onClick={() => goBack()}
+                    >
+                      Volver
+                    </Button>
+                    <Button
+                      variant="btn btn-outline-primary mx-2"
+                      onClick={() => push("/Home")}
+                    >
+                      Volver al Catalogo
+                    </Button>
+                  </Card.Text>
+                </>
               )}
             </Card.Body>
           </Card>
