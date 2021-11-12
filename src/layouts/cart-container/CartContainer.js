@@ -1,56 +1,15 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "react-bootstrap";
 import NumberFormat from "react-number-format";
 import Cart from "../../components/cart/Cart";
 import { CartContext } from "../../components/context/CartContext";
-import { getFirestore } from "../../firebase";
 
 const CartContainer = () => {
-  const { items, clear, calculateTotal } = useContext(CartContext);
-  const [orderId, setOrderId] = useState(null);
+  const { items, clearCart, calculateTotal } = useContext(CartContext);
 
   const handleClearItem = () => {
-    clear();
-  };
-
-  const handleFinishPurchase = () => {
-    const newItems = items.map(({ item, quantity }) => ({
-      item: {
-        id: item.id,
-        product: item.product,
-        price: item.price,
-      },
-      quantity,
-    }));
-
-    const newOrder = {
-      buyer: {
-        name: "Santiago",
-        phone: "123456789",
-        email: "san@san.com.ar",
-      },
-      items: newItems,
-      total: calculateTotal(),
-    };
-
-    const db = getFirestore(); //llamo a la base de datos
-    const orders = db.collection("orders"); //llamo a la coleccion de ordenes
-    //Puedo usar el metodo batch para crear una orden en la base de datos
-    const batch = db.batch();
-
-    //Usamos add para agregar una orden (podes agregar una coleccion o un documento entre otros)
-    orders
-      .add(newOrder)
-      .then((response) => {
-        items.forEach(({ item, quantity }) => {
-          const docRef = db.collection("products").doc(item.id);
-          batch.update(docRef, { stock: item.stock - quantity });
-        });
-        batch.commit();
-        setOrderId(response.id);
-      })
-      .catch((error) => console.log("error: ", error));
+    clearCart();
   };
 
   return (
@@ -70,12 +29,6 @@ const CartContainer = () => {
           </strong>
           <Card.Text>
           <Link to="/checkout" className="btn btn-success mx-3">Comprar productos</Link>
-            {/* <Button onClick={handleFinishPurchase} variant="primary">
-              Finalizar Compra
-            </Button> */}
-            <>
-            {orderId && <h3>Tu orden con el id: ${orderId} ha sido creado</h3>}
-            </>
           </Card.Text>
           <div className="d-flex justify-content-center">
             <Button

@@ -1,26 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { Button, Spinner } from "react-bootstrap";
-// import { products } from "../../data/products";
 import ItemList from "../../components/item-list/ItemList";
 import { getFirestore } from "../../firebase";
+import Loader from "../../components/loader/Loader";
 
 
 const ItemListContainer = ({ children, greeting }) => {
   const { categoryValue } = useParams();
   const [itemsProducts, setitemsProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // useEffect(() => {
-  //   if (categoryValue !== undefined && categoryValue !== "all") {
-  //     const findItem = products.filter(
-  //       (categorySub) => categorySub.category === categoryValue
-  //     );
-  //     setitemsProducts(findItem);
-  //   } else {
-  //     setitemsProducts(products);
-  //   }
-  // }, [categoryValue]);
 
   //cuando hay algun cambio useEffec se ejecuta
   useEffect(() => {
@@ -81,16 +69,7 @@ const ItemListContainer = ({ children, greeting }) => {
       <h1>{greeting}</h1>
       {children}
       {loading ? (
-        <Button variant="primary" disabled>
-          <Spinner
-            as="span"
-            animation="border"
-            size="sm"
-            role="status"
-            aria-hidden="true"
-          />{" "}
-          Loading...
-        </Button>
+       <Loader />
       ) : (
         <ItemList products={itemsProducts} />
       )}

@@ -1,12 +1,8 @@
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-//import ItemDetailContainer from "../../layouts/item-detail-container/ItemDetailContainer";
 import "./Item.css";
 
 const Item = ({ id, product, price, pictureUrl, stock }) => {
-  // const handleShowItemClick = () => {
-  //   console.log(`Detalles del Producto ${id} seleccionado`);
-  // };
 
   return (
     <div className="col-md-4">
@@ -20,9 +16,6 @@ const Item = ({ id, product, price, pictureUrl, stock }) => {
               alt=""
             />
             <Card.Text>
-              <strong>ID:</strong> {id}
-            </Card.Text>
-            <Card.Text>
               <strong>Producto:</strong> {product}
             </Card.Text>
             <Card.Text>
@@ -32,7 +25,6 @@ const Item = ({ id, product, price, pictureUrl, stock }) => {
               <strong>Stock disponible: </strong> {stock}
             </Card.Text>
             <Link to={`../item/${id}`}>
-              {/* <Button variant="primary" onClick={handleShowItemClick}> */}
               <Button variant="primary">Ver detalle del producto</Button>
             </Link>
           </Card.Body>
