@@ -53,9 +53,6 @@ const ItemDetail = ({
                 alt=""
               />
               <Card.Text>
-                <strong>ID:</strong> {id}
-              </Card.Text>
-              <Card.Text>
                 <strong>Producto:</strong> {product}
               </Card.Text>
               <Card.Text>

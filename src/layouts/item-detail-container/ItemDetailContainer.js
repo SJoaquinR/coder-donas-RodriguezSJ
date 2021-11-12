@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { Button, Spinner } from "react-bootstrap";
-// import { products } from "../../data/products";
-// import { mook } from "../../helpers/mook";
 import ItemDetail from "../../components/item-detail/ItemDetail";
 import { getFirestore } from "../../firebase";
+import Loader from "../../components/loader/Loader";
 
 const ItemDetailContainer = () => {
   const { itemId } = useParams();
@@ -14,30 +12,6 @@ const ItemDetailContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const [quantity, setQuantity] = useState(0);
-
-  // const [isFinished, setIsFinished] = useState(false);
-  // const [isSuccess, setIsSuccess] = useState(false);
-  // const [messageContext, setMessageContext] = useState("");
-
-  // useEffect(() => {
-  //   if (isTrue) {
-  //     setMessageContext(`Context recibido: ${isTrue}`)
-  //   }
-  // },[isTrue]);
-
-  // useEffect(() => {
-  //   if (itemId) {
-  //     mook(
-  //       products,
-  //       itemId,
-  //       setMessage,
-  //       setIsSuccess,
-  //       setIsLoading,
-  //       setIsFinished,
-  //       setItem
-  //     );
-  //   }
-  // }, [itemId]);
 
   useEffect(() => {
     if (itemId) {
@@ -65,22 +39,12 @@ const ItemDetailContainer = () => {
   return (
     <>
       <h1>Producto seleccionado</h1>
-      {/* <h2> {messageContext && <p>{messageContext}</p>} </h2> */}
 
       <h3 className={isLoading ? "successMessage" : "errorMessages"}>
         {message}
       </h3>
       {isLoading ? (
-        <Button variant="primary" disabled>
-          <Spinner
-            as="span"
-            animation="border"
-            size="sm"
-            role="status"
-            aria-hidden="true"
-          />{" "}
-          Loading...
-        </Button>
+        <Loader />
       ) : (
         <div className="album py-4 ">
           <div className="container">

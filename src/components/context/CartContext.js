@@ -2,16 +2,6 @@ import { createContext, useState } from "react";
 
 export const CartContext = createContext([]);
 
-// const mockItem = [
-//   {
-//     item: {
-//       id: 1,
-//       name: "Item 1",
-//     },
-//     quantity: 3,
-//   },
-// ];
-
 export const CartProvider = ({ defaultValue = [], children }) => {
   const [items, setItems] = useState(defaultValue);
 
@@ -29,7 +19,7 @@ export const CartProvider = ({ defaultValue = [], children }) => {
     setItems(currentItems);
   };
 
-  const clear = () => setItems(defaultValue);
+  const clearCart = () => setItems(defaultValue);
 
   // True if item is in cart
   // False if item is not in cart
@@ -53,7 +43,7 @@ export const CartProvider = ({ defaultValue = [], children }) => {
         items,
         addItem,
         removeItem,
-        clear,
+        clearCart,
         isInCart,
         getItemsCount,
         calculateTotal,
