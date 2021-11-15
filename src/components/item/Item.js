@@ -13,7 +13,7 @@ const Item = ({ id, product, price, pictureUrl, stock }) => {
               src={pictureUrl}
               style={{ width: "200px" }}
               className="border border-dark rounded"
-              alt=""
+              alt={`Imagen del prodcuto ${product}`}
             />
             <Card.Text>
               <strong>Producto:</strong> {product}

@@ -9,8 +9,6 @@ function ItemCount({ stock, quantity, setQuantity }) {
         <Button
           variant={`btn ${quantity === 0 ? "btn-danger disabled" : "btn-secondary"}`}
           onClick={handleRest}
-          // value={-1}
-          // disabled={quantity <= 0}
         >
           -
         </Button>
@@ -20,8 +18,6 @@ function ItemCount({ stock, quantity, setQuantity }) {
         <Button
           variant={`btn ${quantity === stock ? "btn-danger disabled" : "btn-success"}`}
           onClick={handlePlus}
-          // value={1}
-          // disabled={quantity >= stock}
         >
           +
         </Button>

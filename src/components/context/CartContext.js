@@ -21,8 +21,6 @@ export const CartProvider = ({ defaultValue = [], children }) => {
 
   const clearCart = () => setItems(defaultValue);
 
-  // True if item is in cart
-  // False if item is not in cart
   const isInCart = (itemId) => {
     return items.some((item) => item.item.id === itemId);
   };

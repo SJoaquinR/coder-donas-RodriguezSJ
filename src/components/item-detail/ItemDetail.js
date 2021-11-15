@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Button, Card } from "react-bootstrap";
-import NumberFormat from "react-number-format";
 import { Link, useLocation, useHistory } from "react-router-dom";
+import NumberFormat from "react-number-format";
 import { CartContext } from "../context/CartContext";
 import ItemCount from "../ItemCount";
 
@@ -98,7 +98,6 @@ const ItemDetail = ({
                             <Card.Text>
                               <Button
                                 variant={styles.btnAddItem}
-                                //variant="primary m-2"
                                 onClick={handleAddItem}
                                 disabled={quantity === 0}
                               >

@@ -1,15 +1,11 @@
 import { useContext, useState } from "react";
+import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import { Form, Row, Button } from "react-bootstrap";
-//import { Redirect } from "react-router";
-import { getFirestore } from "../../firebase";
+import { getFirestore, getDateTime } from "../../firebase";
 import { CartContext } from "../context/CartContext";
 import Loader from "../../components/loader/Loader";
 import "./FinishPurchase.css";
-import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
 
 const FinishPurchase = () => {
   const { items, clearCart, calculateTotal } = useContext(CartContext);
@@ -71,7 +67,7 @@ const FinishPurchase = () => {
         surname: surname,
         phone: phone,
         email: email,
-        date: firebase.firestore.Timestamp.fromDate(new Date()),
+        date: getDateTime(),
       },
       items: newItems,
       total: calculateTotal(),
@@ -126,7 +122,7 @@ const FinishPurchase = () => {
                   onChange={handleInputChange}
                 />
                 <Form.Control.Feedback type="invalid">
-                  Ingrese Nombre.
+                  Ingrese Nombre
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group
@@ -144,7 +140,7 @@ const FinishPurchase = () => {
                   onChange={handleInputChange}
                 />
                 <Form.Control.Feedback type="invalid">
-                  Ingrese Apellido.
+                  Ingrese Apellido
                 </Form.Control.Feedback>
               </Form.Group>{" "}
             </div>
@@ -158,7 +154,7 @@ const FinishPurchase = () => {
               >
                 <Form.Label>Correo Electronico</Form.Label>
                 <Form.Control
-                  type="text"
+                  type="email"
                   placeholder="E-mail"
                   aria-describedby="inputGroupPrepend"
                   required
@@ -167,7 +163,7 @@ const FinishPurchase = () => {
                   onChange={handleInputChange}
                 />
                 <Form.Control.Feedback type="invalid">
-                  Ingrese un Correo electronico.
+                  Ingrese email valido: mail@domain.com
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group
@@ -185,7 +181,7 @@ const FinishPurchase = () => {
                   onChange={handleInputChange}
                 />
                 <Form.Control.Feedback type="invalid">
-                  Ingrese numero de Telefono.
+                  Ingrese Telefono
                 </Form.Control.Feedback>
               </Form.Group>
             </div>
@@ -204,7 +200,7 @@ const FinishPurchase = () => {
             </>
           ) : (
             <>
-              <h4>Tu orden con el id: ${orderId} ha sido creado</h4>
+              <h4>Tu orden con el id: <strong style={{ color: "lightcoral" }}>${orderId}</strong> ha sido creado</h4>
               <Link to={`/`}>
                 <Button variant="outline-success" className="mt-3">
                   Ir al catalogo

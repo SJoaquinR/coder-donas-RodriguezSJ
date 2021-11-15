@@ -9,6 +9,7 @@ const ItemListContainer = ({ children, greeting }) => {
   const { categoryValue } = useParams();
   const [itemsProducts, setitemsProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState("");
 
   //cuando hay algun cambio useEffec se ejecuta
   useEffect(() => {
@@ -21,7 +22,7 @@ const ItemListContainer = ({ children, greeting }) => {
         .get()
         .then((querySnapshot) => {
           if (querySnapshot.size === 0) {
-            console.log("No hay productos disponibles");
+            setMessage("No hay productos disponibles");
             return;
           }
           setitemsProducts(
@@ -31,7 +32,7 @@ const ItemListContainer = ({ children, greeting }) => {
             }))
           );
         })
-        .catch((error) => console.log("Error al obtener los productos", error))
+        .catch((error) => setMessage("Error al obtener los productos", error))
         .finally(() => setLoading(false));
       return;
     }
@@ -46,7 +47,7 @@ const ItemListContainer = ({ children, greeting }) => {
       .get()
       .then((querySnapshot) => {
         if (querySnapshot.size === 0) {
-          console.log(
+          setMessage(
             "No hay productos disponibles en la categoria seleccionada"
           );
           return;
@@ -59,7 +60,7 @@ const ItemListContainer = ({ children, greeting }) => {
         );
       })
       .catch((error) =>
-        console.log("Error al obtener los productos por categoria", error)
+      setMessage("Error al obtener los productos por categoria", error)
       )
       .finally(() => setLoading(false));
   }, [categoryValue]);
@@ -73,6 +74,7 @@ const ItemListContainer = ({ children, greeting }) => {
       ) : (
         <ItemList products={itemsProducts} />
       )}
+      {message && <p>{message}</p>}
     </>
   );
 };

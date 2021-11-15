@@ -4,7 +4,7 @@ import CartWidget from "../cart-widget/CartWidget";
 import "./NavBar.css";
 
 const NavBar = () => {
-  const history = useHistory(); //Lo uso para mantener el css de boostrap
+  const history = useHistory(); 
 
   return (
     <Navbar bg="light" expand="lg" className="navbar sticky-top navbar">
