@@ -45,30 +45,7 @@ input[type='date']::-webkit-calendar-picker-indicator {
   width: 48%;
 }
 
-.flax {
-  display: flex;
-  justify-content: space-around;
-}
 .btn-block {
   margin-top: 10px;
   text-align: center;
-}
-
-@media (min-width: 568px) {
-  .name-item {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  .name-item input,
-  .name-item div {
-    width: calc(50% - 20px);
-  }
-  .name-item div input {
-    width: 97%;
-  }
-  .name-item div label {
-    display: block;
-    padding-bottom: 5px;
-  }
 }
