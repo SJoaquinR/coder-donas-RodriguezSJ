@@ -14,6 +14,32 @@
 
 <hr>
 
+## Project sections and functionalities
+
+### Navigation bar
+
+- Allows you to navigate between the different categories, filtering the corresponding products.
+- Shows how many products have been added to the shopping cart.
+
+### Main section
+
+- Show all products.
+
+### Details section
+
+- Shows extended information of the selected product.
+- You can select the quantity of products you want to buy.
+- You can add it to the cart where you will be redirected to the transaction in progress.
+
+### Shopping cart
+
+- Shows a summary of the transaction in process next to the form to finalize the purchase.
+- You can delete a specific product or empty the cart completely.
+- All the data entered in the form will be previously validated before sending your order.
+- Once your purchase is completed, you will be given the identification number of the transaction made.
+
+<hr>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
