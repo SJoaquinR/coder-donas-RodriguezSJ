@@ -18,23 +18,27 @@ const FinishPurchase = () => {
     name: "",
     surname: "",
     email: "",
+    email2: "",
     phone: "",
   });
 
-  const handleInputChange = (e) => {
+    const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
     setBuyes({
       ...buyes,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
-  const { name, surname, email, phone } = buyes;
+  const { name, surname, email, email2, phone } = buyes;
 
   const clearForm = () => {
     setBuyes({
       name: "",
       surname: "",
       email: "",
+      email2: "",
       phone: "",
     });
   };
@@ -43,7 +47,8 @@ const FinishPurchase = () => {
     event.preventDefault();
 
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
+    
+    if ((form.checkValidity() === false) || (email !== email2)) {
       event.stopPropagation();
       setValidated(true);
 
@@ -167,6 +172,29 @@ const FinishPurchase = () => {
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group
+                md="4"
+                controlId="validationCustomEmail"
+                className="item"
+              >
+                <Form.Label>Repetir Correo Electronico</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Repetir E-mail"
+                  aria-describedby="inputGroupPrepend"
+                  required
+                  name="email2"
+                  value={email2}
+                  onChange={handleInputChange}
+                  isInvalid={ email !== email2 && email !== ""}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Repita email correctamente
+                </Form.Control.Feedback>
+              </Form.Group>
+             
+            </div>
+            <div className="columns">
+            <Form.Group
                 md="4"
                 controlId="validationCustomPhone"
                 className="item"
